@@ -103,17 +103,46 @@ function CitationConfiguration(
 			
 			if (configuration.enableHoverContainer) {
 				$(hoverable).hover(function() {
+					var me = $("#" + HOVER_CONTAINER_NAME);
+					
+					me.removeClass();
+					me.addClass("bottom default");
+					
+					me.html(citation.citationText());
+					me.stop().fadeIn(_this.configuration.hoverContainerFadeLength);
+					
 					var hoverableOffset = $(this).offset();
 					var hoverableHeight = $(this).height();
 					var hoverableWidth = $(this).width();
-					var me = $("#" + HOVER_CONTAINER_NAME);
 					
-					me.html(citation.citationText());
 					me.css({
 						left: hoverableOffset.left - (hoverableWidth / 2) - configuration.hoverArrowOffset,
-						top: hoverableOffset.top - me.height() - configuration.hoverArrowOffset
+						top: hoverableOffset.top - me.height() - 33
 					});
-					me.stop().fadeIn(_this.configuration.hoverContainerFadeLength);
+					
+					var bounding = me[0].getBoundingClientRect();
+					
+					if (bounding.top < 0) {
+						me.removeClass("bottom");
+						me.addClass("top");
+						me.css({
+							top: hoverableOffset.top + hoverableHeight + 10
+						});
+					}
+					
+					if (bounding.left < 0) {
+						me.removeClass("default");
+						me.addClass("left");
+						me.css({
+							left: hoverableOffset.left - (hoverableWidth/2)
+						});
+					} else if (bounding.right > (window.innerWidth || document.documentElement.clientWidth)) {
+						me.removeClass("default");
+						me.addClass("right");
+						me.css({
+							left: hoverableOffset.left - (hoverableWidth*1.5) - me.width()
+						});
+					}
 				}, function() {
 					$("#" + HOVER_CONTAINER_NAME).stop().fadeOut(_this.configuration.hoverContainerFadeLength);
 				});
@@ -149,7 +178,7 @@ function CitationConfiguration(
 			return;
 		}
 		
-		$("body").append("<div id='citation-hover'></div>");
+		$("body").append("<div id='citation-hover' class='top left'></div>");
 	}
 	
 }( jQuery ));

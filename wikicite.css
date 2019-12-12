@@ -26,10 +26,32 @@
 #citation-hover:after {
 	content: " ";
 	position: absolute;
-	left: 30px;
+}
+
+#citation-hover.bottom:after {
 	bottom: -10px;
 	border-top: 10px solid #D8D8D8;
 	border-right: 10px solid transparent;
 	border-left: 10px solid transparent;
 	border-bottom: none;
+}
+
+#citation-hover.top:after {
+	top: -10px;
+	border-bottom: 10px solid #D8D8D8;
+	border-right: 10px solid transparent;
+	border-left: 10px solid transparent;
+	border-top: none;
+}
+
+#citation-hover.default:after {
+	left: 30px;
+}
+
+#citation-hover.left:after {
+	left: 0px;
+}
+
+#citation-hover.right:after {
+	right: 0px;
 }

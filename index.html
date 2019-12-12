@@ -9,23 +9,36 @@
 
 		<script>
 			$(document).ready(function(){
-				var testLinkCitation = new Citation("test", "Test linked citations");
+				var citations = [
+					new Citation("ct1985", '"Nation\'s space-age needs well defined in report: CSIRO". Canberra Times (ACT: 1926-1995). 1985-06-25. p.8. Retrieved 2019-07-19.'),
+					new Citation("ct1995", '"Space-age ghost town finds a new life". Canberra Times (ACT: 1926-1995). 1995-01-09. p. 4. Retrieved 2019-07-19.'),
+					new Citation("tc2019", 'Dougherty, Kerrie. "Lost in space: Australia dwindled from space leader to also-ran in 50 years". The Conversation. Retrieved 2019-08-14.'),
+					new Citation("cm2019", '"Australian government seeds a space agency, but will it take off?". Cosmos Magazine. Retrieved 2019-07-19.'),
+					new Citation("jol2019", '"Whatever happened to the Cape York Spaceport? | John Oxley Library". Retrieved 2019-07-19.'),
+					new Citation("ct1992", '"High-tech saviours or white elephants?". Canberra Times (ACT: 1926-1995). 1992-04-13. p. 9. Retrieved 2019-07-19.')
+				];
 			
-				$("body").cite([testLinkCitation]);
+				$("body").cite(citations);
 			});
 		</script>
 		
 		<style>
 			body {
 				font-family: Arial, sans-serif;
+				/*padding: 64px;*/
 			}
 		</style>
 	</head>
 	<body>
-		<h1>Citation Mark Test</h1>
-	
-		<p><span data-inline-citation="Test inline citation">Test</span> <span data-linked-citation="test">Test</span>  <span data-linked-citation="test">Test</span></p>
-	
+		<h1><a href="https://en.wikipedia.org/wiki/National_Space_Program">National Space Program</a></h1>
+		
+		<span data-linked-citation="ct1985"></span>The <b>National Space Program</b> was a set of policies and organisations under the Keating Government created with the goals of developing a 
+		national space industry in Australia.<span data-linked-citation="ct1985"></span> When the Howard Government came to power in 1996 the program 
+		was abolished following the advice of the Bureau of Industry Economics. The National Space Program was generally considered a failure by most 
+		media after its demise.<span data-linked-citation="ct1995"></span><span data-linked-citation="tc2019"></span> During its 
+		existence it was crippled by a lack of budget,<span data-linked-citation="cm2019"></span> and multiple white elephant projects.
+		<span data-linked-citation="jol2019"></span><span data-linked-citation="ct1992"></span>
+		
 		<div id="complete-citation-container">
 		</div>
 	</body>
