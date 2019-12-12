@@ -8,28 +8,28 @@
 }
 
 #complete-citation-container-list {
-  columns: 3;
-  -webkit-columns: 3;
-  -moz-columns: 3;
+	columns: 3;
+	-webkit-columns: 3;
+	-moz-columns: 3;
 }
 
 #citation-hover {
-  width: 200px;
-  border-radius: 3px;
-  border: 2px solid #D8D8D8;
-  background-color: #fff;
-  padding: 10px 16px;
-  position: absolute;
-  display: none;
+	width: 200px;
+	border-radius: 3px;
+	border: 2px solid #D8D8D8;
+	background-color: #fff;
+	padding: 10px 16px;
+	position: absolute;
+	display: none;
 }
 
 #citation-hover:after {
-  content: " ";
-  position: absolute;
-  left: 30px;
-  bottom: -10px;
-  border-top: 10px solid #D8D8D8;
-  border-right: 10px solid transparent;
-  border-left: 10px solid transparent;
-  border-bottom: none;
+	content: " ";
+	position: absolute;
+	left: 30px;
+	bottom: -10px;
+	border-top: 10px solid #D8D8D8;
+	border-right: 10px solid transparent;
+	border-left: 10px solid transparent;
+	border-bottom: none;
 }
