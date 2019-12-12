@@ -1,5 +1,5 @@
 # WikiCite
-Easy Wikipedia style citations using jQuery.
+Easy Wikipedia style citations using jQuery. Demo at https://arctro.com/open/WikiCite
 
 ## Usage
 To use WikiCite, first create either an inline or linked citation.
