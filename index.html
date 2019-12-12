@@ -1,0 +1,32 @@
+
+<html>
+	<head>
+		<title>WikiCite Demo</title>
+
+		<link rel="stylesheet" type="text/css" href="wikicite.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script src="wikicite.js"></script>
+
+		<script>
+			$(document).ready(function(){
+				var testLinkCitation = new Citation("test", "Test linked citations");
+			
+				$("body").cite([testLinkCitation]);
+			});
+		</script>
+		
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Citation Mark Test</h1>
+	
+		<p><span data-inline-citation="Test inline citation">Test</span> <span data-linked-citation="test">Test</span>  <span data-linked-citation="test">Test</span></p>
+	
+		<div id="complete-citation-container">
+		</div>
+	</body>
+</html>

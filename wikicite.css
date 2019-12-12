@@ -7,6 +7,12 @@
 	margin-right: 4px;
 }
 
+#complete-citation-container-list {
+  columns: 3;
+  -webkit-columns: 3;
+  -moz-columns: 3;
+}
+
 #citation-hover {
   width: 200px;
   border-radius: 3px;

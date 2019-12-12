@@ -9,14 +9,14 @@ function Citation(id, rawCitation) {
 function CitationConfiguration(
 	enableCompleteCitationContainer = true,
 	completeCitationContainer = "#complete-citation-container",
-	completeCitationContainerColumns = 3,
+	completeCitationContainerTitle = "<h2>References</h2>",
 	enableHoverContainer = true,
 	hoverArrowOffset = 30,
 	hoverContainerFadeLength = 50) {
 		
 	this.completeCitationContainer = completeCitationContainer;
 	this.enableCompleteCitationContainer = enableCompleteCitationContainer;
-	this.completeCitationContainerColumns = completeCitationContainerColumns;
+	this.completeCitationContainerTitle = completeCitationContainerTitle;
 	this.enableHoverContainer = enableHoverContainer;
 	this.hoverArrowOffset = hoverArrowOffset;
 
@@ -29,8 +29,15 @@ function CitationConfiguration(
 	
 	var HOVER_CONTAINER_NAME = "citation-hover";
 	
-	$.fn.cite = function(citations = [], configuration = new CitationConfiguration()) {
-		new _CiteExecute(citations, configuration).execute(this);
+	$.fn.cite = function(citations = [], configuration = new CitationConfiguration(), callback) {
+		var ce = new _CiteExecute(citations, configuration);
+		ce.execute(this);
+		
+		if (callback != null) {
+			callback(ce.usedCitations);
+		}
+		
+		return this;
 	}
 	
 	function _CiteExecute(citations, configuration) {
@@ -41,6 +48,7 @@ function CitationConfiguration(
 		this.execute = function(el) {
 			createHover();
 			this.processCitations(el);
+			this.setupCompleteCitationContainer();
 		}
 		
 		this.processCitations = function (el) {
@@ -53,8 +61,6 @@ function CitationConfiguration(
 			el.each(function () {
 				$(this).find("["+INLINE_CITATION_NAME+"]").each(function() {
 					var citation = new Citation(null, $(this).attr(INLINE_CITATION_NAME));
-					
-					console.log(citation);
 					
 					citationCount++;
 					citation.ref = citationCount;
@@ -82,7 +88,7 @@ function CitationConfiguration(
 					_this.setupCitation(this, citation);
 				});
 				
-				this.usedCitations = usedCitations;
+				_this.usedCitations = usedCitations;
 			});
 		}
 		
@@ -117,6 +123,23 @@ function CitationConfiguration(
 		this.findCitation = function(id) {
 			for (var i = 0; i < citations.length; i++) {
 				if (citations[i].id == id) return citations[i];
+			}
+		}
+		
+		this.setupCompleteCitationContainer = function() {
+			if (!this.configuration.enableCompleteCitationContainer || $(this.configuration.completeCitationContainer).length < 1) {
+				return;
+			}
+			
+			var me = $(this.configuration.completeCitationContainer);
+			
+			me.append(this.configuration.completeCitationContainerTitle);
+			var list = $("<ol id='complete-citation-container-list'></ol>").appendTo(me);
+			
+			console.log(this.usedCitations);
+			
+			for(citation of this.usedCitations) {
+				$(list).append("<li id='ref" + citation.ref + "'>" + citation.citationText() + "</li>");
 			}
 		}
 	}
