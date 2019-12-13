@@ -1,6 +1,8 @@
 # WikiCite
 Easy Wikipedia style citations using jQuery. Demo at https://arctro.com/open/WikiCite
 
+![example](https://i.imgur.com/ilSNTdd.png)
+
 ## Usage
 To use WikiCite, first create either an inline or linked citation.
 ### Inline
