@@ -3,7 +3,14 @@ function Citation(id, rawCitation) {
 	this.rawCitation = rawCitation;
 	this.ref = null;
 	
-	this.citationText = function() { return rawCitation; }
+	this.citationText = function(formatter) { return rawCitation; }
+}
+
+function FormattedCitation(id, params) {
+	this.id = id;
+	this.ref = ref;
+	
+	this.citationText = function(formatter) { return formatter.format(params); }
 }
 
 function CitationConfiguration(
@@ -46,7 +53,7 @@ function CitationConfiguration(
 		this.usedCitations = []
 		
 		this.execute = function(el) {
-			createHover();
+			this.createHover();
 			this.processCitations(el);
 			this.setupCompleteCitationContainer();
 		}
@@ -171,14 +178,22 @@ function CitationConfiguration(
 				$(list).append("<li id='ref" + citation.ref + "'>" + citation.citationText() + "</li>");
 			}
 		}
-	}
-	
-	function createHover() {
-		if ($("#" + HOVER_CONTAINER_NAME).length) {
-			return;
-		}
 		
-		$("body").append("<div id='citation-hover' class='top left'></div>");
+		this.createHover = function() {
+			if ($("#" + HOVER_CONTAINER_NAME).length) {
+				return;
+			}
+			
+			$("body").append("<div id='citation-hover' class='top left'></div>");
+			
+			var _this = this;
+			
+			$("#citation-hover").hover(function() {
+				$(this).stop().fadeIn(_this.configuration.hoverContainerFadeLength);
+			}, function() {
+				$(this).stop().fadeOut(_this.configuration.hoverContainerFadeLength);
+			});
+		}
 	}
 	
 }( jQuery ));
