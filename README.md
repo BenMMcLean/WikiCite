@@ -1,4 +1,6 @@
 # WikiCite
+Only requires jQuery!
+
 Easy Wikipedia style citations using jQuery. Demo at https://arctro.com/open/WikiCite
 
 ![example](https://i.imgur.com/ilSNTdd.png)
