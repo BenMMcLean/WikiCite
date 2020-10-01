@@ -1,7 +1,7 @@
 # WikiCite
 Only requires jQuery!
 
-Easy Wikipedia style citations using jQuery. Demo at https://arctro.com/open/WikiCite or https://bushfi.re
+Easy Wikipedia style citations using jQuery. Demo at https://bushfi.re or https://arctro.com/open/WikiCite
 
 ![example](https://i.imgur.com/ilSNTdd.png)
 
